@@ -1,0 +1,113 @@
+/* Credits: Erwin Lejeune — 2026-02-22
+   Typemachine Cyberpunk Theme for MkDocs Material
+   Palette: Ink Black #0d1b2a · Prussian Blue #1b263b · Dusk Blue #415a77
+            Lavender Grey #778da9 · Alabaster #e0e1dd */
+
+:root {
+  --md-primary-fg-color: #1b263b;
+  --md-primary-bg-color: #e0e1dd;
+  --md-accent-fg-color: #778da9;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-default-bg-color: #0d1b2a;
+  --md-default-fg-color: #e0e1dd;
+  --md-default-fg-color--light: #778da9;
+  --md-default-fg-color--lighter: #415a77;
+  --md-default-fg-color--lightest: #1b263b;
+
+  --md-primary-fg-color: #1b263b;
+  --md-accent-fg-color: #778da9;
+
+  --md-code-bg-color: #0d1b2a;
+  --md-code-fg-color: #e0e1dd;
+  --md-code-hl-color: rgba(65, 90, 119, 0.3);
+
+  --md-typeset-color: #e0e1dd;
+  --md-typeset-a-color: #778da9;
+
+  --md-footer-bg-color: #0d1b2a;
+  --md-footer-bg-color--dark: #0d1b2a;
+}
+
+/* Typewriter heading style */
+.md-typeset h1,
+.md-typeset h2 {
+  font-family: "Special Elite", "Courier New", monospace;
+  letter-spacing: 0.04em;
+}
+
+/* Blinking cursor after h1 */
+.md-typeset h1::after {
+  content: "█";
+  animation: blink 1s step-end infinite;
+  color: var(--md-accent-fg-color);
+  margin-left: 4px;
+  font-size: 0.85em;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Subtle CRT scanlines (slate mode) */
+[data-md-color-scheme="slate"] .md-main {
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(119, 141, 169, 0.02) 2px,
+    rgba(119, 141, 169, 0.02) 4px
+  );
+}
+
+/* Code blocks */
+[data-md-color-scheme="slate"] .highlight code,
+[data-md-color-scheme="slate"] code {
+  border: 1px solid rgba(65, 90, 119, 0.25);
+}
+
+/* Sidebar */
+[data-md-color-scheme="slate"] .md-sidebar {
+  border-right: 1px solid rgba(65, 90, 119, 0.2);
+}
+
+/* Nav active */
+[data-md-color-scheme="slate"] .md-nav__link--active {
+  color: #e0e1dd !important;
+  font-weight: 600;
+}
+
+/* Header glow */
+.md-typeset h1 {
+  text-shadow: 0 0 8px rgba(119, 141, 169, 0.4), 0 0 16px rgba(65, 90, 119, 0.2);
+}
+
+/* Scrollbar */
+[data-md-color-scheme="slate"] ::-webkit-scrollbar { width: 6px; }
+[data-md-color-scheme="slate"] ::-webkit-scrollbar-track { background: #0d1b2a; }
+[data-md-color-scheme="slate"] ::-webkit-scrollbar-thumb { background: #415a77; border-radius: 3px; }
+[data-md-color-scheme="slate"] ::-webkit-scrollbar-thumb:hover { background: #778da9; }
+
+/* Admonitions */
+[data-md-color-scheme="slate"] .md-typeset .admonition {
+  border-color: #415a77;
+  background: rgba(27, 38, 59, 0.6);
+}
+
+/* Tables */
+[data-md-color-scheme="slate"] .md-typeset table:not([class]) th {
+  background: #1b263b;
+  color: #778da9;
+  text-transform: uppercase;
+  font-size: 0.75em;
+  letter-spacing: 0.05em;
+}
+
+[data-md-color-scheme="slate"] .md-typeset table:not([class]) td {
+  border-color: rgba(65, 90, 119, 0.2);
+}
+
+/* Google Fonts for Special Elite */
+@import url("https://fonts.googleapis.com/css2?family=Special+Elite&display=swap");
