@@ -1,0 +1,310 @@
+/* Credits: Erwin Lejeune — 2026-02-22 */
+@import "tailwindcss";
+
+/* ── epsteinexposed Docs — Typewriter Cyberpunk Theme ──────── */
+/* Palette matched to LinkedStein                                */
+@theme {
+  --color-ink-black: #0d1b2a;
+  --color-prussian-blue: #1b263b;
+  --color-dusk-blue: #415a77;
+  --color-lavender-grey: #778da9;
+  --color-alabaster: #e0e1dd;
+  --color-amber: #d4a574;
+  --color-red-muted: #c45d5d;
+
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-typewriter: "Special Elite", "Courier New", monospace;
+}
+
+/* ── Global ─────────────────────────────────────────────────── */
+body {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  background-color: var(--color-ink-black);
+  color: var(--color-alabaster);
+  line-height: 1.7;
+}
+
+/* ── Scrollbar ──────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--color-ink-black); }
+::-webkit-scrollbar-thumb { background: var(--color-dusk-blue); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-lavender-grey); }
+
+/* ── CRT scanline overlay ───────────────────────────────────── */
+.crt-scanlines::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(119, 141, 169, 0.025) 2px,
+    rgba(119, 141, 169, 0.025) 4px
+  );
+  z-index: 9999;
+}
+
+/* ── Typewriter heading ─────────────────────────────────────── */
+.typewriter-heading {
+  font-family: var(--font-typewriter);
+  letter-spacing: 0.04em;
+}
+
+/* ── Blinking cursor ────────────────────────────────────────── */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.cursor-blink::after {
+  content: "█";
+  animation: blink 1s step-end infinite;
+  color: var(--color-lavender-grey);
+  margin-left: 2px;
+  font-size: 0.9em;
+}
+
+/* ── Glow effects ───────────────────────────────────────────── */
+.glow {
+  text-shadow:
+    0 0 6px rgba(119, 141, 169, 0.6),
+    0 0 12px rgba(65, 90, 119, 0.4);
+}
+
+.glow-box {
+  box-shadow:
+    0 0 8px rgba(119, 141, 169, 0.2),
+    0 0 20px rgba(65, 90, 119, 0.1);
+}
+
+/* ── Code block ─────────────────────────────────────────────── */
+pre.code-block {
+  background: var(--color-ink-black);
+  border: 1px solid rgba(65, 90, 119, 0.3);
+  border-radius: 4px;
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+pre.code-block code {
+  color: var(--color-alabaster);
+  font-family: var(--font-mono);
+}
+
+pre.code-block .code-comment { color: var(--color-dusk-blue); }
+pre.code-block .code-keyword { color: var(--color-lavender-grey); font-weight: 600; }
+pre.code-block .code-string { color: var(--color-amber); }
+
+/* ── Table ──────────────────────────────────────────────────── */
+table.doc-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+table.doc-table th {
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 2px solid rgba(65, 90, 119, 0.5);
+  color: var(--color-lavender-grey);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 11px;
+}
+
+table.doc-table td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid rgba(65, 90, 119, 0.15);
+  color: var(--color-alabaster);
+}
+
+table.doc-table tr:hover td {
+  background: rgba(65, 90, 119, 0.08);
+}
+
+/* ── Sidebar link active state ──────────────────────────────── */
+.sidebar-link-active {
+  color: var(--color-alabaster) !important;
+  border-left-color: var(--color-lavender-grey) !important;
+  background: rgba(65, 90, 119, 0.12);
+}
+
+/* ── Diagram ASCII block ────────────────────────────────────── */
+.diagram-block {
+  background: rgba(27, 38, 59, 0.6);
+  border: 1px solid rgba(65, 90, 119, 0.25);
+  border-radius: 4px;
+  padding: 1.25rem 1.5rem;
+  overflow-x: auto;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--color-lavender-grey);
+}
+
+/* ── Selection ──────────────────────────────────────────────── */
+::selection {
+  background: rgba(119, 141, 169, 0.3);
+  color: var(--color-alabaster);
+}
+
+/* ── Markdown Prose ─────────────────────────────────────────── */
+.md-prose h1 {
+  font-family: var(--font-typewriter);
+  letter-spacing: 0.04em;
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: var(--color-alabaster);
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 8px rgba(119, 141, 169, 0.4), 0 0 16px rgba(65, 90, 119, 0.2);
+}
+
+.md-prose h1::after {
+  content: "█";
+  animation: blink 1s step-end infinite;
+  color: var(--color-lavender-grey);
+  margin-left: 4px;
+  font-size: 0.85em;
+}
+
+.md-prose h2 {
+  font-family: var(--font-typewriter);
+  letter-spacing: 0.04em;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-alabaster);
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(65, 90, 119, 0.3);
+}
+
+.md-prose h3 {
+  font-family: var(--font-typewriter);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-lavender-grey);
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.md-prose p {
+  color: rgba(224, 225, 221, 0.85);
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.7;
+}
+
+.md-prose strong {
+  color: var(--color-alabaster);
+  font-weight: 600;
+}
+
+.md-prose a {
+  color: var(--color-lavender-grey);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 150ms;
+}
+
+.md-prose a:hover {
+  color: var(--color-alabaster);
+}
+
+.md-prose ul, .md-prose ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.md-prose li {
+  color: rgba(224, 225, 221, 0.85);
+  font-size: 0.875rem;
+  line-height: 1.7;
+  margin-bottom: 0.25rem;
+}
+
+.md-prose ul li { list-style-type: disc; }
+.md-prose ol li { list-style-type: decimal; }
+
+.md-prose blockquote {
+  border-left: 3px solid var(--color-dusk-blue);
+  padding: 0.75rem 1rem;
+  margin: 1rem 0;
+  background: rgba(27, 38, 59, 0.5);
+  border-radius: 0 4px 4px 0;
+}
+
+.md-prose blockquote p {
+  margin-bottom: 0;
+  color: var(--color-lavender-grey);
+  font-size: 0.8125rem;
+}
+
+.md-prose code {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  background: rgba(27, 38, 59, 0.8);
+  border: 1px solid rgba(65, 90, 119, 0.25);
+  border-radius: 3px;
+  padding: 0.125rem 0.375rem;
+  color: var(--color-amber);
+}
+
+.md-prose pre {
+  background: var(--color-ink-black);
+  border: 1px solid rgba(65, 90, 119, 0.3);
+  border-radius: 4px;
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+}
+
+.md-prose pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--color-alabaster);
+  font-size: 0.8125rem;
+}
+
+.md-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8125rem;
+  margin: 1rem 0;
+}
+
+.md-prose th {
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 2px solid rgba(65, 90, 119, 0.5);
+  color: var(--color-lavender-grey);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.6875rem;
+}
+
+.md-prose td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid rgba(65, 90, 119, 0.15);
+  color: var(--color-alabaster);
+}
+
+.md-prose tr:hover td {
+  background: rgba(65, 90, 119, 0.08);
+}
+
+.md-prose hr {
+  border: none;
+  border-top: 1px solid rgba(65, 90, 119, 0.25);
+  margin: 2rem 0;
+}
