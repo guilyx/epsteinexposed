@@ -34,9 +34,7 @@ Raised for **404 Not Found** — the requested person/document does not exist.
 
 Raised for **429 Too Many Requests** — rate limit exceeded. Back off and retry.
 
-!!! tip "Rate Limits"
-    - `/persons`, `/documents`, `/flights`: 60 requests/minute
-    - `/search`: 30 requests/minute
+> **Rate Limits:** `/persons`, `/documents`, `/flights`: 60 req/min — `/search`: 30 req/min
 
 ## EpsteinExposedServerError
 

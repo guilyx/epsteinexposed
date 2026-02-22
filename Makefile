@@ -16,7 +16,7 @@ install:
 	pip install -e .
 
 install-dev:
-	pip install -e ".[dev,docs]"
+	pip install -e ".[dev]"
 	pre-commit install
 
 test:
@@ -35,11 +35,11 @@ format:
 	ruff format .
 
 clean:
-	rm -rf build/ dist/ *.egg-info .pytest_cache .mypy_cache .ruff_cache htmlcov/ coverage.xml site/
+	rm -rf build/ dist/ *.egg-info .pytest_cache .mypy_cache .ruff_cache htmlcov/ coverage.xml docs/dist/
 	find . -type d -name __pycache__ -exec rm -r {} + 2>/dev/null || true
 
 build:
 	python -m build
 
 docs:
-	mkdocs serve
+	cd docs && npm ci && npm run dev

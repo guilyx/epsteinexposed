@@ -4,8 +4,7 @@
 
 Search persons, documents, flight logs, and emails from the Epstein case files — with both sync and async interfaces.
 
-!!! note "Disclaimer"
-    Inclusion in the Epstein Exposed database does not imply guilt or wrongdoing. All data is derived from publicly released government records, court filings, and verified reporting.
+> **Disclaimer:** Inclusion in the Epstein Exposed database does not imply guilt or wrongdoing. All data is derived from publicly released government records, court filings, and verified reporting.
 
 ## Features
 
@@ -15,33 +14,31 @@ Search persons, documents, flight logs, and emails from the Epstein case files �
 - **Error hierarchy** — Granular exception classes mapped to HTTP status codes
 - **Zero auth** — The upstream API requires no authentication
 
-## Quick Example
+## Quick Example (Sync)
 
-=== "Sync"
+```python
+from epsteinexposed import EpsteinExposed
 
-    ```python
-    from epsteinexposed import EpsteinExposed
+with EpsteinExposed() as client:
+    persons = client.search_persons(q="clinton", category="politician")
+    for p in persons.data:
+        print(p.name, p.stats.flights)
+```
 
-    with EpsteinExposed() as client:
-        persons = client.search_persons(q="clinton", category="politician")
-        for p in persons.data:
-            print(p.name, p.stats.flights)
-    ```
+## Quick Example (Async)
 
-=== "Async"
+```python
+import asyncio
+from epsteinexposed import AsyncEpsteinExposed
 
-    ```python
-    import asyncio
-    from epsteinexposed import AsyncEpsteinExposed
+async def main():
+    async with AsyncEpsteinExposed() as client:
+        flights = await client.search_flights(passenger="maxwell")
+        for f in flights.data:
+            print(f"{f.date}: {f.origin} → {f.destination}")
 
-    async def main():
-        async with AsyncEpsteinExposed() as client:
-            flights = await client.search_flights(passenger="maxwell")
-            for f in flights.data:
-                print(f"{f.date}: {f.origin} → {f.destination}")
-
-    asyncio.run(main())
-    ```
+asyncio.run(main())
+```
 
 ## Installation
 

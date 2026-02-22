@@ -122,7 +122,7 @@ make lint
 
 ## Documentation
 
-Full docs at [guilyx.github.io/epsteinexposed](https://guilyx.github.io/epsteinexposed) (or `make docs` locally).
+Full docs at [guilyx.github.io/epsteinexposed](https://guilyx.github.io/epsteinexposed) — built with Vite + React + Tailwind CSS. Run locally with `make docs`.
 
 ## License
 

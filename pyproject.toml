@@ -41,10 +41,6 @@ dev = [
     "mypy>=1.13.0",
     "pre-commit>=4.0.0",
 ]
-docs = [
-    "mkdocs-material>=9.5.0",
-    "mkdocstrings[python]>=0.27.0",
-]
 
 [project.urls]
 Homepage = "https://github.com/guilyx/epsteinexposed"
