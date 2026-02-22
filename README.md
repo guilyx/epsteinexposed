@@ -10,7 +10,7 @@
 [![Python](https://img.shields.io/pypi/pyversions/epsteinexposed)](https://pypi.org/project/epsteinexposed/)
 [![PyPI - Format](https://img.shields.io/pypi/format/epsteinexposed)](https://pypi.org/project/epsteinexposed/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Docs](https://img.shields.io/badge/docs-mkdocs-blue)](https://guilyx.github.io/epsteinexposed)
+[![Docs](https://img.shields.io/badge/docs-vite%20%2B%20react-blue)](https://guilyx.github.io/epsteinexposed)
 
 **Unofficial Python client for the [Epstein Exposed](https://epsteinexposed.com) public API.**
 

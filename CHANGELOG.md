@@ -6,12 +6,15 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
-- Synchronous `EpsteinExposed` client (httpx)
-- Asynchronous `AsyncEpsteinExposed` client (httpx)
-- Pydantic models for Persons, Documents, Flights, and Search
-- Custom exception hierarchy with status-code mapping
-- Full test suite (sync + async) with respx mocking
-- CI workflow (lint, test matrix 3.10-3.13, build)
-- PyPI publish workflow (trusted publishing on GitHub release)
-- MkDocs Material documentation site
-- Pre-commit hooks (ruff)
+- Synchronous `EpsteinExposed` client backed by `httpx.Client`
+- Asynchronous `AsyncEpsteinExposed` client backed by `httpx.AsyncClient`
+- Pydantic v2 models: `Person`, `PersonDetail`, `Document`, `Flight`, `SearchResults`, `PaginatedResponse[T]`, `PaginationMeta`, `PersonStats`
+- Custom exception hierarchy mapped to HTTP status codes: `EpsteinExposedAPIError`, `ValidationError` (400), `NotFoundError` (404), `RateLimitError` (429), `ServerError` (5xx)
+- Full API coverage: `search_persons`, `get_person`, `search_documents`, `search_flights`, `search`
+- Context manager support for both sync (`with`) and async (`async with`) clients
+- Comprehensive test suite with `pytest`, `pytest-asyncio`, and `respx` mocking
+- CI workflow: ruff lint + format check, test matrix (Python 3.10–3.13), package build, Codecov upload
+- PyPI publish workflow via GitHub Releases (trusted publishing)
+- Vite + React 19 + Tailwind CSS 4 documentation site with typewriter cyberpunk theme
+- Pre-commit hooks (ruff check + format)
+- `Makefile` with `install`, `install-dev`, `test`, `lint`, `format`, `build`, `docs`, `clean` targets
