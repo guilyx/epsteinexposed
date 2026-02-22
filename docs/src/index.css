@@ -2,6 +2,7 @@
 @import "tailwindcss";
 
 /* ── epsteinexposed Docs — Typewriter Cyberpunk Theme ──────── */
+/* Palette matched to LinkedStein                                */
 @theme {
   --color-ink-black: #0d1b2a;
   --color-prussian-blue: #1b263b;
@@ -74,11 +75,77 @@ body {
     0 0 12px rgba(65, 90, 119, 0.4);
 }
 
+.glow-box {
+  box-shadow:
+    0 0 8px rgba(119, 141, 169, 0.2),
+    0 0 20px rgba(65, 90, 119, 0.1);
+}
+
+/* ── Code block ─────────────────────────────────────────────── */
+pre.code-block {
+  background: var(--color-ink-black);
+  border: 1px solid rgba(65, 90, 119, 0.3);
+  border-radius: 4px;
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+pre.code-block code {
+  color: var(--color-alabaster);
+  font-family: var(--font-mono);
+}
+
+pre.code-block .code-comment { color: var(--color-dusk-blue); }
+pre.code-block .code-keyword { color: var(--color-lavender-grey); font-weight: 600; }
+pre.code-block .code-string { color: var(--color-amber); }
+
+/* ── Table ──────────────────────────────────────────────────── */
+table.doc-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+table.doc-table th {
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 2px solid rgba(65, 90, 119, 0.5);
+  color: var(--color-lavender-grey);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 11px;
+}
+
+table.doc-table td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid rgba(65, 90, 119, 0.15);
+  color: var(--color-alabaster);
+}
+
+table.doc-table tr:hover td {
+  background: rgba(65, 90, 119, 0.08);
+}
+
 /* ── Sidebar link active state ──────────────────────────────── */
 .sidebar-link-active {
   color: var(--color-alabaster) !important;
   border-left-color: var(--color-lavender-grey) !important;
   background: rgba(65, 90, 119, 0.12);
+}
+
+/* ── Diagram ASCII block ────────────────────────────────────── */
+.diagram-block {
+  background: rgba(27, 38, 59, 0.6);
+  border: 1px solid rgba(65, 90, 119, 0.25);
+  border-radius: 4px;
+  padding: 1.25rem 1.5rem;
+  overflow-x: auto;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--color-lavender-grey);
 }
 
 /* ── Selection ──────────────────────────────────────────────── */

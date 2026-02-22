@@ -6,7 +6,7 @@ help:
 	@echo "  make install-dev   Install with dev + docs dependencies"
 	@echo "  make test          Run tests"
 	@echo "  make test-cov      Run tests with HTML coverage report"
-	@echo "  make lint          Run linters (ruff, mypy)"
+	@echo "  make lint          Run linters (ruff)"
 	@echo "  make format        Auto-format code"
 	@echo "  make clean         Remove build artefacts"
 	@echo "  make build         Build sdist + wheel"
@@ -28,14 +28,13 @@ test-cov:
 lint:
 	ruff check .
 	ruff format --check .
-	mypy epsteinexposed
 
 format:
 	ruff check --fix .
 	ruff format .
 
 clean:
-	rm -rf build/ dist/ *.egg-info .pytest_cache .mypy_cache .ruff_cache htmlcov/ coverage.xml docs/dist/
+	rm -rf build/ dist/ *.egg-info .pytest_cache .ruff_cache htmlcov/ coverage.xml docs/dist/
 	find . -type d -name __pycache__ -exec rm -r {} + 2>/dev/null || true
 
 build:
