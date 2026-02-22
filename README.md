@@ -3,9 +3,14 @@
 > Credits: Erwin Lejeune — 2026-02-22
 
 [![CI](https://github.com/guilyx/epsteinexposed/actions/workflows/ci.yml/badge.svg)](https://github.com/guilyx/epsteinexposed/actions/workflows/ci.yml)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/guilyx/epsteinexposed)](https://app.codacy.com/gh/guilyx/epsteinexposed/dashboard)
+[![codecov](https://codecov.io/gh/guilyx/epsteinexposed/graph/badge.svg)](https://codecov.io/gh/guilyx/epsteinexposed)
 [![PyPI](https://img.shields.io/pypi/v/epsteinexposed)](https://pypi.org/project/epsteinexposed/)
+[![PyPI - Downloads](https://img.shields.io/pypi/dm/epsteinexposed)](https://pypi.org/project/epsteinexposed/)
 [![Python](https://img.shields.io/pypi/pyversions/epsteinexposed)](https://pypi.org/project/epsteinexposed/)
+[![PyPI - Format](https://img.shields.io/pypi/format/epsteinexposed)](https://pypi.org/project/epsteinexposed/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Docs](https://img.shields.io/badge/docs-mkdocs-blue)](https://guilyx.github.io/epsteinexposed)
 
 **Unofficial Python client for the [Epstein Exposed](https://epsteinexposed.com) public API.**
 
