@@ -166,13 +166,15 @@ class AsyncEpsteinExposed:
         """
         raw = await self._request(
             "/documents",
-            self._strip_none({
-                "q": q,
-                "source": source,
-                "category": category,
-                "page": page,
-                "per_page": per_page,
-            }),
+            self._strip_none(
+                {
+                    "q": q,
+                    "source": source,
+                    "category": category,
+                    "page": page,
+                    "per_page": per_page,
+                }
+            ),
         )
         return PaginatedResponse[Document](**raw)
 
@@ -202,14 +204,16 @@ class AsyncEpsteinExposed:
         """
         raw = await self._request(
             "/flights",
-            self._strip_none({
-                "passenger": passenger,
-                "year": year,
-                "origin": origin,
-                "destination": destination,
-                "page": page,
-                "per_page": per_page,
-            }),
+            self._strip_none(
+                {
+                    "passenger": passenger,
+                    "year": year,
+                    "origin": origin,
+                    "destination": destination,
+                    "page": page,
+                    "per_page": per_page,
+                }
+            ),
         )
         return PaginatedResponse[Flight](**raw)
 
@@ -218,7 +222,7 @@ class AsyncEpsteinExposed:
     async def search(
         self,
         q: str,
-        type: str | None = None,  # noqa: A002
+        type: str | None = None,
         limit: int = DEFAULT_PER_PAGE,
     ) -> SearchResults:
         """Search across documents and emails simultaneously.

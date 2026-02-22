@@ -3,7 +3,6 @@
 
 from __future__ import annotations
 
-import httpx
 import pytest
 import respx
 from httpx import Response
@@ -74,9 +73,7 @@ class TestSearchPersons:
 
     @respx.mock
     def test_empty_results(self, client):
-        respx.get(f"{BASE}/persons").mock(
-            return_value=Response(200, json=make_envelope([]))
-        )
+        respx.get(f"{BASE}/persons").mock(return_value=Response(200, json=make_envelope([])))
         result = client.search_persons()
         assert result.data == []
         assert result.meta.total == 0
@@ -97,9 +94,7 @@ class TestGetPerson:
                 "stats": {"flights": 26, "documents": 50, "connections": 10, "emails": 5},
             }
         }
-        respx.get(f"{BASE}/persons/bill-clinton").mock(
-            return_value=Response(200, json=person)
-        )
+        respx.get(f"{BASE}/persons/bill-clinton").mock(return_value=Response(200, json=person))
         result = client.get_person("bill-clinton")
         assert result.name == "Bill Clinton"
         assert result.black_book_entry is True
@@ -119,9 +114,7 @@ class TestSearchDocuments:
     @respx.mock
     def test_basic(self, client):
         data = [{"id": "d1", "title": "Deposition", "source": "court-filing"}]
-        respx.get(f"{BASE}/documents").mock(
-            return_value=Response(200, json=make_envelope(data))
-        )
+        respx.get(f"{BASE}/documents").mock(return_value=Response(200, json=make_envelope(data)))
         result = client.search_documents(q="deposition")
         assert len(result.data) == 1
         assert result.data[0].title == "Deposition"
@@ -154,9 +147,7 @@ class TestSearchFlights:
                 "passengerCount": 1,
             }
         ]
-        respx.get(f"{BASE}/flights").mock(
-            return_value=Response(200, json=make_envelope(data))
-        )
+        respx.get(f"{BASE}/flights").mock(return_value=Response(200, json=make_envelope(data)))
         result = client.search_flights(passenger="Doe")
         assert len(result.data) == 1
         assert result.data[0].origin == "Palm Beach"

@@ -60,9 +60,7 @@ class TestAsyncPersons:
                 "aliases": [],
             }
         }
-        respx.get(f"{BASE}/persons/jane-doe").mock(
-            return_value=Response(200, json=person)
-        )
+        respx.get(f"{BASE}/persons/jane-doe").mock(return_value=Response(200, json=person))
         result = await async_client.get_person("jane-doe")
         assert result.name == "Jane Doe"
 
@@ -82,9 +80,7 @@ class TestAsyncDocuments:
     @pytest.mark.asyncio
     async def test_search(self, async_client):
         data = [{"id": "d1", "title": "Flight Log"}]
-        respx.get(f"{BASE}/documents").mock(
-            return_value=Response(200, json=make_envelope(data))
-        )
+        respx.get(f"{BASE}/documents").mock(return_value=Response(200, json=make_envelope(data)))
         result = await async_client.search_documents(q="flight")
         assert len(result.data) == 1
 
@@ -105,9 +101,7 @@ class TestAsyncFlights:
                 "passengerCount": 1,
             }
         ]
-        respx.get(f"{BASE}/flights").mock(
-            return_value=Response(200, json=make_envelope(data))
-        )
+        respx.get(f"{BASE}/flights").mock(return_value=Response(200, json=make_envelope(data)))
         result = await async_client.search_flights(passenger="A")
         assert result.data[0].origin == "TIST"
 
