@@ -13,19 +13,17 @@ import deploymentContent from "../content/deployment.md?raw";
 
 export default function App() {
   return (
-    <div className="crt-scanlines">
-      <Routes>
-        <Route element={<Layout />}>
-          <Route index element={<MarkdownPage content={homeContent} />} />
-          <Route path="getting-started" element={<MarkdownPage content={gettingStartedContent} />} />
-          <Route path="api/client" element={<MarkdownPage content={clientContent} />} />
-          <Route path="api/async-client" element={<MarkdownPage content={asyncClientContent} />} />
-          <Route path="api/models" element={<MarkdownPage content={modelsContent} />} />
-          <Route path="api/exceptions" element={<MarkdownPage content={exceptionsContent} />} />
-          <Route path="deployment" element={<MarkdownPage content={deploymentContent} />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Route>
-      </Routes>
-    </div>
+    <Routes>
+      <Route element={<Layout />}>
+        <Route index element={<MarkdownPage content={homeContent} />} />
+        <Route path="getting-started" element={<MarkdownPage content={gettingStartedContent} />} />
+        <Route path="api/client" element={<MarkdownPage content={clientContent} />} />
+        <Route path="api/async-client" element={<MarkdownPage content={asyncClientContent} />} />
+        <Route path="api/models" element={<MarkdownPage content={modelsContent} />} />
+        <Route path="api/exceptions" element={<MarkdownPage content={exceptionsContent} />} />
+        <Route path="deployment" element={<MarkdownPage content={deploymentContent} />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Route>
+    </Routes>
   );
 }
