@@ -112,7 +112,6 @@ A `429` response raises `EpsteinExposedRateLimitError`.
 
 ## Next Steps
 
-- [Sync Client API](api/client.md)
-- [Async Client API](api/async-client.md)
-- [Models Reference](api/models.md)
-- [Error Handling](api/exceptions.md)
+- Browse the [source on GitHub](https://github.com/guilyx/epsteinexposed) for the full client, model, and exception APIs
+- Read the [CHANGELOG](https://github.com/guilyx/epsteinexposed/blob/main/CHANGELOG.md) for version history
+- See [Deployment](deployment.md) for publishing and docs hosting guides
