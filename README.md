@@ -1,7 +1,5 @@
 # epsteinexposed
 
-> Credits: Erwin Lejeune — 2026-02-22
-
 [![CI](https://github.com/guilyx/epsteinexposed/actions/workflows/ci.yml/badge.svg)](https://github.com/guilyx/epsteinexposed/actions/workflows/ci.yml)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/8ea9be0e475e41a1aaa5f1a3f91c4c64)](https://app.codacy.com?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 [![codecov](https://codecov.io/gh/guilyx/epsteinexposed/graph/badge.svg)](https://codecov.io/gh/guilyx/epsteinexposed)
