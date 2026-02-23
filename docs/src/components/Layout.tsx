@@ -30,10 +30,10 @@ function SidebarLink({ to, label }: { to: string; label: string }) {
       to={to}
       end={to === "/"}
       className={({ isActive }) =>
-        `block border-l-2 px-4 py-1.5 text-[13px] transition-all duration-150 ${
+        `block border-l-2 px-4 py-1.5 text-sm transition-all duration-150 ${
           isActive
-            ? "sidebar-link-active border-l-lavender-grey font-semibold"
-            : "border-l-transparent text-lavender-grey/70 hover:border-l-dusk-blue hover:text-alabaster"
+            ? "sidebar-link-active font-medium"
+            : "border-l-transparent text-slate-300/70 hover:border-l-slate-500 hover:text-white-soft"
         }`
       }
     >
@@ -47,12 +47,12 @@ export default function Layout() {
 
   return (
     <div className="flex min-h-screen">
-      <aside className="sticky top-0 flex h-screen w-60 shrink-0 flex-col border-r border-dusk-blue/20 bg-prussian-blue/40">
-        <div className="border-b border-dusk-blue/20 px-5 py-5">
-          <NavLink to="/" className="glow typewriter-heading text-xl font-bold tracking-widest">
-            EPSTEIN<span className="text-lavender-grey">EXPOSED</span>
+      <aside className="sticky top-0 flex h-screen w-60 shrink-0 flex-col border-r border-slate-700/50 bg-deep-navy">
+        <div className="border-b border-slate-700/50 px-5 py-5">
+          <NavLink to="/" className="text-lg font-bold tracking-tight text-white">
+            epstein<span className="text-cyan">exposed</span>
           </NavLink>
-          <p className="mt-1 text-[11px] uppercase tracking-wider text-dusk-blue">
+          <p className="mt-0.5 text-xs text-slate-500">
             Python Client Docs
           </p>
         </div>
@@ -60,7 +60,7 @@ export default function Layout() {
         <nav className="flex-1 overflow-y-auto px-2 py-4">
           {NAV_SECTIONS.map((section) => (
             <div key={section.title} className="mb-5">
-              <h3 className="mb-1.5 px-4 text-[10px] font-bold uppercase tracking-[0.15em] text-dusk-blue">
+              <h3 className="mb-1.5 px-4 text-[11px] font-semibold uppercase tracking-widest text-slate-500">
                 {section.title}
               </h3>
               {section.links.map((link) => (
@@ -70,23 +70,23 @@ export default function Layout() {
           ))}
         </nav>
 
-        <div className="border-t border-dusk-blue/20 px-5 py-3">
-          <div className="flex items-center justify-between">
+        <div className="border-t border-slate-700/50 px-5 py-3">
+          <div className="flex items-center gap-4">
             <a
               href="https://github.com/guilyx/epsteinexposed"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[11px] text-dusk-blue transition hover:text-lavender-grey"
+              className="text-xs text-slate-500 transition hover:text-cyan"
             >
-              GitHub &rarr;
+              GitHub
             </a>
             <a
               href="https://pypi.org/project/epsteinexposed/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[11px] text-dusk-blue transition hover:text-lavender-grey"
+              className="text-xs text-slate-500 transition hover:text-cyan"
             >
-              PyPI &rarr;
+              PyPI
             </a>
           </div>
         </div>
