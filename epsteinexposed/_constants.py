@@ -7,7 +7,8 @@ BASE_URL = "https://epsteinexposed.com/api/v1"
 DEFAULT_TIMEOUT = 30.0
 DEFAULT_PER_PAGE = 20
 MAX_PER_PAGE = 100
-USER_AGENT = "epsteinexposed-python/0.1.0"
+DEFAULT_IMPERSONATE = "chrome"
+USER_AGENT = "epsteinexposed-python/0.2.0"
 
 PERSON_CATEGORIES = frozenset(
     {
@@ -42,3 +43,9 @@ DOCUMENT_CATEGORIES = frozenset(
 )
 
 SEARCH_TYPES = frozenset({"documents", "emails"})
+
+# ── Rate Limits (per IP, sliding window) ───────────────────────
+# /persons, /persons/:slug, /documents, /flights → 60 req/min
+# /search                                        → 30 req/min
+RATE_LIMIT_STANDARD = 60
+RATE_LIMIT_SEARCH = 30

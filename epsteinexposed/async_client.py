@@ -1,13 +1,22 @@
 # Credits: Erwin Lejeune — 2026-02-22
-"""Asynchronous client for the Epstein Exposed public API."""
+"""Asynchronous client for the Epstein Exposed public API.
+
+Uses curl_cffi with browser TLS impersonation to bypass Cloudflare
+bot protection on the upstream API.
+"""
 
 from __future__ import annotations
 
 from typing import Any
 
-import httpx
+from curl_cffi import requests as cf_requests
 
-from epsteinexposed._constants import BASE_URL, DEFAULT_PER_PAGE, DEFAULT_TIMEOUT, USER_AGENT
+from epsteinexposed._constants import (
+    BASE_URL,
+    DEFAULT_IMPERSONATE,
+    DEFAULT_PER_PAGE,
+    DEFAULT_TIMEOUT,
+)
 from epsteinexposed.exceptions import (
     EpsteinExposedAPIError,
     EpsteinExposedNotFoundError,
@@ -30,6 +39,9 @@ class AsyncEpsteinExposed:
 
     No authentication required. Attribution to epsteinexposed.com is requested.
 
+    Uses browser TLS impersonation (via curl_cffi) to work with the
+    Cloudflare-protected API.
+
     Example::
 
         import asyncio
@@ -48,19 +60,19 @@ class AsyncEpsteinExposed:
         self,
         base_url: str = BASE_URL,
         timeout: float = DEFAULT_TIMEOUT,
+        impersonate: str = DEFAULT_IMPERSONATE,
     ) -> None:
         self._base = base_url.rstrip("/")
-        self._http = httpx.AsyncClient(
-            base_url=self._base,
+        self._http = cf_requests.AsyncSession(
+            impersonate=impersonate,
             timeout=timeout,
-            headers={"User-Agent": USER_AGENT},
         )
 
     # ── Lifecycle ─────────────────────────────────────────────
 
     async def close(self) -> None:
-        """Close the underlying HTTP transport."""
-        await self._http.aclose()
+        """Close the underlying HTTP session."""
+        await self._http.close()
 
     async def __aenter__(self) -> AsyncEpsteinExposed:
         return self
@@ -71,33 +83,31 @@ class AsyncEpsteinExposed:
     # ── Internal ──────────────────────────────────────────────
 
     async def _request(self, path: str, params: dict[str, Any] | None = None) -> dict[str, Any]:
-        try:
-            resp = await self._http.get(path, params=params)
-            resp.raise_for_status()
-            return resp.json()  # type: ignore[no-any-return]
-        except httpx.HTTPStatusError as exc:
-            self._raise_for_status(exc)
+        url = f"{self._base}{path}"
+        resp = await self._http.get(url, params=params)
+        if resp.status_code >= 400:
+            self._raise_for_status(resp.status_code, resp)
+        return resp.json()  # type: ignore[no-any-return]
 
     @staticmethod
-    def _raise_for_status(exc: httpx.HTTPStatusError) -> None:
+    def _raise_for_status(code: int, resp: Any) -> None:
         body: dict[str, Any] | None = None
         try:
-            body = exc.response.json()
+            body = resp.json()
         except Exception:
             pass
 
-        code = exc.response.status_code
-        msg = body.get("error", {}).get("message", str(exc)) if body else str(exc)
+        msg = body.get("error", {}).get("message", f"HTTP {code}") if body else f"HTTP {code}"
 
         if code == 400:
-            raise EpsteinExposedValidationError(msg, response=body) from exc
+            raise EpsteinExposedValidationError(msg, response=body)
         if code == 404:
-            raise EpsteinExposedNotFoundError(msg, response=body) from exc
+            raise EpsteinExposedNotFoundError(msg, response=body)
         if code == 429:
-            raise EpsteinExposedRateLimitError(msg, response=body) from exc
+            raise EpsteinExposedRateLimitError(msg, response=body)
         if code >= 500:
-            raise EpsteinExposedServerError(msg, response=body) from exc
-        raise EpsteinExposedAPIError(msg, status_code=code, response=body) from exc
+            raise EpsteinExposedServerError(msg, response=body)
+        raise EpsteinExposedAPIError(msg, status_code=code, response=body)
 
     @staticmethod
     def _strip_none(params: dict[str, Any]) -> dict[str, Any]:
