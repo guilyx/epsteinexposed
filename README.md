@@ -71,6 +71,14 @@ async def main():
 asyncio.run(main())
 ```
 
+## Cloudflare & TLS Impersonation
+
+The upstream API is behind Cloudflare bot protection, which blocks standard HTTP clients (`httpx`, `requests`) with a 403 challenge page. This library uses [`curl_cffi`](https://github.com/lexiforest/curl_cffi) to impersonate a Chrome browser's TLS fingerprint, bypassing the challenge transparently.
+
+```python
+client = EpsteinExposed(impersonate="chrome")  # default
+```
+
 ## API Coverage
 
 | Endpoint | Method | Client Method |
@@ -80,6 +88,17 @@ asyncio.run(main())
 | `GET /api/v1/documents` | Search documents (FTS5) | `search_documents()` |
 | `GET /api/v1/flights` | Search flight logs | `search_flights()` |
 | `GET /api/v1/search` | Cross-type search | `search()` |
+
+## Rate Limits
+
+The upstream API enforces per-IP rate limits using a sliding window:
+
+| Endpoints | Limit |
+|---|---|
+| `/persons`, `/persons/:slug`, `/documents`, `/flights` | 60 requests / minute |
+| `/search` | 30 requests / minute |
+
+Exceeding the limit returns HTTP 429 and raises `EpsteinExposedRateLimitError`.
 
 ## Response Models
 
@@ -116,8 +135,14 @@ except EpsteinExposedRateLimitError:
 git clone https://github.com/guilyx/epsteinexposed.git
 cd epsteinexposed
 make install-dev
-make test
+make test          # unit tests (mocked)
 make lint
+```
+
+Run integration tests against the real API (rate-limit aware):
+
+```bash
+pytest -m integration --no-cov
 ```
 
 ## Documentation

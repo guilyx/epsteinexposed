@@ -1,6 +1,6 @@
 # EpsteinExposed (Sync Client)
 
-Synchronous client using `httpx.Client`.
+Synchronous client using `curl_cffi.requests.Session` with browser TLS impersonation to bypass Cloudflare bot protection.
 
 ## Constructor
 
@@ -8,6 +8,7 @@ Synchronous client using `httpx.Client`.
 EpsteinExposed(
     base_url: str = "https://epsteinexposed.com/api/v1",
     timeout: float = 30.0,
+    impersonate: str = "chrome",
 )
 ```
 
@@ -15,6 +16,7 @@ EpsteinExposed(
 |---|---|---|---|
 | `base_url` | `str` | `https://epsteinexposed.com/api/v1` | API base URL |
 | `timeout` | `float` | `30.0` | HTTP timeout in seconds |
+| `impersonate` | `str` | `"chrome"` | Browser TLS profile to impersonate |
 
 Supports use as a context manager:
 
@@ -93,4 +95,4 @@ Cross-type search across documents and emails.
 
 ### `close()`
 
-Close the underlying HTTP transport.
+Close the underlying HTTP session.
