@@ -127,6 +127,21 @@ except EpsteinExposedRateLimitError:
 | `EpsteinExposedServerError` | 5xx |
 | `EpsteinExposedAPIError` | (base) |
 
+## Available Constants
+
+The package exposes several constants useful for parameter validation:
+
+| Constant | Values |
+|---|---|
+| `PERSON_CATEGORIES` | `politician`, `business`, `royalty`, `celebrity`, `associate`, `legal`, `academic`, `socialite`, `military-intelligence`, `other` |
+| `DOCUMENT_SOURCES` | `court-filing`, `doj-release`, `fbi`, `efta` |
+| `DOCUMENT_CATEGORIES` | `deposition`, `testimony`, `correspondence` |
+| `SEARCH_TYPES` | `documents`, `emails` |
+
+```python
+from epsteinexposed._constants import PERSON_CATEGORIES, DOCUMENT_SOURCES
+```
+
 ## Development
 
 ```bash
@@ -142,6 +157,10 @@ Run integration tests against the real API (rate-limit aware):
 ```bash
 pytest -m integration --no-cov
 ```
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup, code standards, and how to submit changes.
 
 ## Documentation
 

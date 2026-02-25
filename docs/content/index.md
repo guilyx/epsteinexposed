@@ -67,3 +67,8 @@ The upstream API enforces per-IP rate limits using a sliding window:
 | `/search` | 30 requests / minute |
 
 Exceeding the limit returns a `429` status and raises `EpsteinExposedRateLimitError`.
+
+## Next Steps
+
+- [Getting Started](getting-started.md) — installation, first query, error handling, and TLS impersonation
+- [Deployment](deployment.md) — PyPI publishing and docs hosting
