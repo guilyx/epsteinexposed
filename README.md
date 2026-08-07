@@ -14,6 +14,8 @@
 
 Search persons, documents, flight logs, and emails from the Epstein case files — programmatically, with both sync and async interfaces.
 
+[![epsteinexposed](https://raw.githubusercontent.com/guilyx/epsteinexposed/main/promo/exposed-poster.png)](https://raw.githubusercontent.com/guilyx/epsteinexposed/main/promo/exposed-16x9.mp4)
+
 > **Disclaimer:** Inclusion in the Epstein Exposed database does not imply guilt or wrongdoing. All data is derived from publicly released government records, court filings, and verified reporting. Attribution to [epsteinexposed.com](https://epsteinexposed.com) is requested.
 
 ## Installation
@@ -165,6 +167,32 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup, code standards, an
 ## Documentation
 
 Full docs at [guilyx.github.io/epsteinexposed](https://guilyx.github.io/epsteinexposed) — built with Vite + React + Tailwind CSS. Run locally with `make docs`.
+
+## The toolchain
+
+This repository is one of four that share a data source and a design system:
+
+| Repo | Role |
+|---|---|
+| [`epsteinexposed`](https://github.com/guilyx/epsteinexposed) | Python client for the public API *(this repo)* |
+| [`epsteinexposed-mcp`](https://github.com/guilyx/epsteinexposed-mcp) | MCP server — structured search |
+| [`epstein-files-rag-mcp`](https://github.com/guilyx/epstein-files-rag-mcp) | MCP server — semantic search *(in development)* |
+| [`epsteinexplorer`](https://github.com/guilyx/epsteinexplorer) | Natural-language chat app |
+
+## Design system
+
+All four repositories share the **"Declassified"** visual language — a dark
+archival palette with a single ember accent, monospace structure and Inter
+prose. The canonical tokens live in [`brand/tokens.css`](brand/tokens.css)
+and the rationale in [`brand/DESIGN.md`](brand/DESIGN.md); both files are
+byte-identical across the four repos.
+
+The docs site mirrors those tokens into Tailwind via `docs/src/brand.css`.
+Verify the mirror has not drifted:
+
+```bash
+node brand/verify-tokens.mjs
+```
 
 ## License
 

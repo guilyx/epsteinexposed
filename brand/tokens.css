@@ -1,0 +1,126 @@
+/* ═══════════════════════════════════════════════════════════════
+   EPSTEIN FILES TOOLCHAIN — CANONICAL DESIGN TOKENS
+   "Declassified" direction · v1.0.0
+
+   This file is the single source of truth for the shared visual
+   language across:
+     · epsteinexposed          (Python client + docs)
+     · epsteinexposed-mcp      (MCP server + docs)
+     · epstein-files-rag-mcp   (RAG MCP server + docs)
+     · epsteinexplorer         (chat app + docs)
+
+   It is byte-identical in every repository. Do not edit a single
+   copy — change it here, then propagate to all four. See
+   brand/DESIGN.md for the rationale behind every value.
+
+   Tailwind v4 consumers import the @theme mirror (src/brand.css)
+   which carries the same values and generates utility classes.
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── Surfaces ────────────────────────────────────────────────
+     Four steps of depth. Never introduce a fifth; if something
+     needs to feel raised, use a hairline border, not a new grey. */
+  --color-ink: #0b1017;      /* page background — the darkest step  */
+  --color-deep: #10171f;     /* code blocks, inset wells            */
+  --color-panel: #161f2b;    /* cards, sidebars, raised surfaces    */
+  --color-line: #243040;     /* hairline borders, dividers, rules   */
+
+  /* ── Text ────────────────────────────────────────────────────
+     Contrast ratios measured against --color-ink (#0b1017). */
+  --color-muted: #5c6c82;    /*  3.4:1 — markers, disabled, borders */
+  --color-subtle: #94a3b8;   /*  7.1:1 — secondary text, captions   */
+  --color-text: #e4e8ee;     /* 15.0:1 — body copy                  */
+  --color-bright: #f5f7fa;   /* 17.2:1 — headings, emphasis         */
+
+  /* ── Accent ──────────────────────────────────────────────────
+     ONE accent. Ember is the stamp-ink of the system: links,
+     focus rings, active nav, the highlighted word in a logotype.
+     Resist adding a second hue — the restraint is the brand. */
+  --color-ember: #e8913a;    /*  7.5:1 — primary accent             */
+  --color-ember-dim: #8a5520;/*  hover/pressed, dim rules           */
+
+  /* ── Status ──────────────────────────────────────────────────
+     Used sparingly and only for genuine state, never decoration. */
+  --color-seal: #c0524a;     /*  3.9:1 — errors, destructive        */
+  --color-verify: #5fa37e;   /*  6.4:1 — success, verified sources  */
+
+  /* ── Translucent washes ──────────────────────────────────────
+     Precomputed so every surface tints identically. */
+  --wash-ember: rgba(232, 145, 58, 0.08);
+  --wash-ember-strong: rgba(232, 145, 58, 0.16);
+  --wash-line: rgba(36, 48, 64, 0.6);
+  --wash-seal: rgba(192, 82, 74, 0.1);
+  --wash-verify: rgba(95, 163, 126, 0.1);
+
+  /* ── Type ────────────────────────────────────────────────────
+     Mono carries the archival register: it sets every heading,
+     label, kicker and nav item. Inter carries running prose only,
+     because long-form monospace is punishing to read. */
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo,
+    Consolas, monospace;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+
+  /* ── Geometry ────────────────────────────────────────────────
+     Documents have corners. Radii stay tight everywhere. */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
+
+  /* ── Motion ──────────────────────────────────────────────────
+     Mechanical, not bouncy. Nothing overshoots. */
+  --ease-doc: cubic-bezier(0.2, 0, 0, 1);
+  --dur-fast: 120ms;
+  --dur-base: 180ms;
+  --dur-slow: 320ms;
+}
+
+/* ── Redaction bar ─────────────────────────────────────────────
+   The signature motif. A solid block standing in for withheld
+   text. Used in logotypes, hero headlines and section rules.
+   Never animate it as a "reveal" of real victim or case data —
+   see DESIGN.md § Ethical constraints. */
+.redact {
+  background: var(--color-text);
+  color: transparent;
+  border-radius: var(--radius-sm);
+  padding: 0 0.28em;
+  user-select: none;
+}
+
+.redact-ember {
+  background: var(--color-ember);
+  color: transparent;
+  border-radius: var(--radius-sm);
+  padding: 0 0.28em;
+  user-select: none;
+}
+
+/* ── Stamp label ───────────────────────────────────────────────
+   Uppercase mono chip used for file numbers, badges, kickers. */
+.stamp {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-ember);
+  border: 1px solid var(--color-ember-dim);
+  border-radius: var(--radius-sm);
+  padding: 0.125rem 0.4rem;
+}
+
+/* ── Accessibility ─────────────────────────────────────────────
+   Every surface honours reduced-motion. The archival aesthetic
+   leans on typography, not movement, so nothing essential is
+   lost when animation is disabled. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

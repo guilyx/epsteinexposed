@@ -1,114 +1,113 @@
 /* Credits: Erwin Lejeune — 2026-02-22 */
 @import "tailwindcss";
+@import "./brand.css";
 
-/* ── epsteinexposed Docs — Cyberpunk Modern Theme ────────── */
-@theme {
-  --color-ink-black: #0a0e17;
-  --color-deep-navy: #111827;
-  --color-slate-900: #1a2332;
-  --color-slate-700: #2d3a4f;
-  --color-slate-500: #4b5f7a;
-  --color-slate-300: #94a3b8;
-  --color-white-soft: #e2e8f0;
-  --color-white: #f1f5f9;
-  --color-cyan: #22d3ee;
-  --color-cyan-dim: #0e7490;
-  --color-violet: #a78bfa;
-  --color-amber: #fbbf24;
-  --color-rose: #f43f5e;
+/* ── epsteinexposed Docs — "Declassified" ─────────────────────
+   Palette, type, geometry and motion all come from
+   brand/tokens.css via src/brand.css. Read brand/DESIGN.md
+   before introducing a colour — this system has exactly one
+   accent on purpose. ─────────────────────────────────────── */
 
-  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo,
-    Consolas, monospace;
-}
-
-/* ── Global ─────────────────────────────────────────────────── */
 body {
   font-family: var(--font-sans);
   font-size: 15px;
-  background-color: var(--color-ink-black);
-  color: var(--color-white-soft);
+  background-color: var(--color-ink);
+  color: var(--color-text);
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ── Scrollbar ──────────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: var(--color-ink-black); }
-::-webkit-scrollbar-thumb { background: var(--color-slate-700); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: var(--color-slate-500); }
+::-webkit-scrollbar-track { background: var(--color-ink); }
+::-webkit-scrollbar-thumb {
+  background: var(--color-line);
+  border-radius: var(--radius-sm);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--color-muted); }
 
-/* ── Selection ──────────────────────────────────────────────── */
 ::selection {
-  background: rgba(34, 211, 238, 0.2);
-  color: var(--color-white);
+  background: var(--wash-ember-strong);
+  color: var(--color-bright);
 }
 
-/* ── Sidebar link active state ──────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-ember);
+  outline-offset: 2px;
+}
+
+/* ── Sidebar active link ─────────────────────────────────────── */
 .sidebar-link-active {
-  color: var(--color-cyan) !important;
-  border-left-color: var(--color-cyan) !important;
-  background: rgba(34, 211, 238, 0.06);
+  color: var(--color-ember) !important;
+  border-left-color: var(--color-ember) !important;
+  background: var(--wash-ember);
 }
 
-/* ── Markdown Prose ─────────────────────────────────────────── */
+/* ── Markdown prose ──────────────────────────────────────────
+   Structure is monospace, running prose is Inter. See
+   brand/DESIGN.md § Typography. ──────────────────────────── */
 .md-prose h1 {
-  font-size: 2rem;
+  font-family: var(--font-mono);
+  font-size: 1.85rem;
   font-weight: 700;
-  color: var(--color-white);
+  color: var(--color-bright);
   margin-bottom: 0.75rem;
-  letter-spacing: -0.025em;
-}
-
-.md-prose h2 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--color-white);
-  margin-top: 2.5rem;
-  margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--color-slate-700);
   letter-spacing: -0.02em;
 }
 
-.md-prose h3 {
-  font-size: 1.15rem;
+.md-prose h2 {
+  font-family: var(--font-mono);
+  font-size: 1.35rem;
   font-weight: 600;
-  color: var(--color-slate-300);
+  color: var(--color-bright);
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-line);
+  letter-spacing: -0.01em;
+}
+
+.md-prose h3 {
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-subtle);
   margin-top: 2rem;
   margin-bottom: 0.75rem;
 }
 
 .md-prose h4 {
-  font-size: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
   font-weight: 600;
-  color: var(--color-slate-300);
+  color: var(--color-subtle);
   margin-top: 1.5rem;
   margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
 .md-prose p {
-  color: var(--color-white-soft);
+  color: var(--color-text);
   margin-bottom: 1rem;
   font-size: 0.9375rem;
   line-height: 1.7;
 }
 
 .md-prose strong {
-  color: var(--color-white);
+  color: var(--color-bright);
   font-weight: 600;
 }
 
 .md-prose a {
-  color: var(--color-cyan);
+  color: var(--color-ember);
   text-decoration: none;
   border-bottom: 1px solid transparent;
-  transition: border-color 150ms ease;
+  transition: border-color var(--dur-fast) var(--ease-doc);
 }
 
 .md-prose a:hover {
-  border-bottom-color: var(--color-cyan);
+  border-bottom-color: var(--color-ember);
 }
 
 .md-prose ul, .md-prose ol {
@@ -117,7 +116,7 @@ body {
 }
 
 .md-prose li {
-  color: var(--color-white-soft);
+  color: var(--color-text);
   font-size: 0.9375rem;
   line-height: 1.7;
   margin-bottom: 0.25rem;
@@ -125,38 +124,37 @@ body {
 
 .md-prose ul li { list-style-type: disc; }
 .md-prose ol li { list-style-type: decimal; }
-
-.md-prose ul li::marker { color: var(--color-slate-500); }
-.md-prose ol li::marker { color: var(--color-slate-500); }
+.md-prose ul li::marker { color: var(--color-muted); }
+.md-prose ol li::marker { color: var(--color-muted); }
 
 .md-prose blockquote {
-  border-left: 3px solid var(--color-cyan-dim);
+  border-left: 2px solid var(--color-ember-dim);
   padding: 0.75rem 1rem;
   margin: 1.25rem 0;
-  background: rgba(34, 211, 238, 0.04);
-  border-radius: 0 6px 6px 0;
+  background: var(--wash-ember);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
 }
 
 .md-prose blockquote p {
   margin-bottom: 0;
-  color: var(--color-slate-300);
+  color: var(--color-subtle);
   font-size: 0.875rem;
 }
 
 .md-prose code {
   font-family: var(--font-mono);
   font-size: 0.8125rem;
-  background: rgba(30, 41, 59, 0.8);
-  border: 1px solid var(--color-slate-700);
-  border-radius: 4px;
+  background: var(--color-deep);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
   padding: 0.15rem 0.4rem;
-  color: var(--color-cyan);
+  color: var(--color-ember);
 }
 
 .md-prose pre {
-  background: var(--color-deep-navy);
-  border: 1px solid var(--color-slate-700);
-  border-radius: 8px;
+  background: var(--color-deep);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
   padding: 1rem 1.25rem;
   overflow-x: auto;
   margin: 1.25rem 0;
@@ -168,7 +166,7 @@ body {
   background: none;
   border: none;
   padding: 0;
-  color: var(--color-white-soft);
+  color: var(--color-text);
   font-size: 0.8125rem;
 }
 
@@ -182,24 +180,27 @@ body {
 .md-prose th {
   text-align: left;
   padding: 0.625rem 0.75rem;
-  border-bottom: 2px solid var(--color-slate-700);
-  color: var(--color-slate-300);
-  font-weight: 600;
-  font-size: 0.8125rem;
+  border-bottom: 1px solid var(--color-line);
+  color: var(--color-subtle);
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
 .md-prose td {
   padding: 0.625rem 0.75rem;
-  border-bottom: 1px solid rgba(45, 58, 79, 0.6);
-  color: var(--color-white-soft);
+  border-bottom: 1px solid var(--wash-line);
+  color: var(--color-text);
 }
 
 .md-prose tr:hover td {
-  background: rgba(34, 211, 238, 0.03);
+  background: var(--wash-ember);
 }
 
 .md-prose hr {
   border: none;
-  border-top: 1px solid var(--color-slate-700);
+  border-top: 1px solid var(--color-line);
   margin: 2rem 0;
 }
