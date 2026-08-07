@@ -16,7 +16,10 @@ import { fileURLToPath } from "node:url";
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const CANON = join(ROOT, "brand", "tokens.css");
 const SKIP = new Set(["node_modules", ".git", "dist", "build", ".venv", ".next"]);
-const TRACKED = /^--(color|font|radius|ease)-/;
+// Covers every token duplicated between brand/tokens.css and a mirror.
+// --wash-* and --dur-* are triplicated across the canonical file and both
+// Tailwind mirrors, so leaving them untracked let them drift silently.
+const TRACKED = /^--(color|font|radius|ease|wash|dur)-/;
 
 /** Extract tracked `--name: value` pairs from a stylesheet. */
 function tokensOf(css) {
