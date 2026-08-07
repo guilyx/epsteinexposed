@@ -76,3 +76,17 @@ jobs:
       - run: pip install build twine
       - run: python -m build
       - run: twine check dist/*
+
+  brand:
+    name: Design tokens in sync
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      # Guards the shared "Declassified" palette: docs/src/brand.css must
+      # match brand/tokens.css exactly. Drift across the four repos is
+      # what this design system exists to prevent — see brand/DESIGN.md.
+      - name: Verify design tokens
+        run: node brand/verify-tokens.mjs
