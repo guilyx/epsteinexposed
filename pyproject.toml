@@ -36,7 +36,11 @@ dev = [
     "pytest>=8.0.0",
     "pytest-cov>=5.0.0",
     "pytest-asyncio>=0.24.0",
-    "ruff>=0.8.0",
+    # <0.16.0: 0.16 promoted Markdown code-block formatting from preview
+    # to stable-by-default, which reformats README.md/docs/*.md on every
+    # run. CI pins the exact patch (0.15.8); this keeps local installs
+    # from drifting past it and seeing failures CI doesn't.
+    "ruff>=0.8.0,<0.16.0",
     "pre-commit>=4.0.0",
 ]
 
