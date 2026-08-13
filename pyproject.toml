@@ -45,11 +45,11 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/guilyx/epsteinexposed"
-Documentation = "https://guilyx.github.io/epsteinexposed"
-Repository = "https://github.com/guilyx/epsteinexposed"
-Issues = "https://github.com/guilyx/epsteinexposed/issues"
-Changelog = "https://github.com/guilyx/epsteinexposed/blob/main/CHANGELOG.md"
+Homepage = "https://github.com/releasetheepsteinfiles/epsteinexposed"
+Documentation = "https://releasetheepsteinfiles.github.io/epsteinexposed"
+Repository = "https://github.com/releasetheepsteinfiles/epsteinexposed"
+Issues = "https://github.com/releasetheepsteinfiles/epsteinexposed/issues"
+Changelog = "https://github.com/releasetheepsteinfiles/epsteinexposed/blob/main/CHANGELOG.md"
 
 [tool.setuptools]
 packages = ["epsteinexposed"]

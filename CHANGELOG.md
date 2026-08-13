@@ -40,5 +40,5 @@ All notable changes to this project will be documented in this file.
 - Pre-commit hooks (ruff check + format)
 - `Makefile` with `install`, `install-dev`, `test`, `lint`, `format`, `build`, `docs`, `clean` targets
 
-[0.2.0]: https://github.com/guilyx/epsteinexposed/compare/v0.1.0...v0.2.0
-[0.1.0]: https://github.com/guilyx/epsteinexposed/releases/tag/v0.1.0
+[0.2.0]: https://github.com/releasetheepsteinfiles/epsteinexposed/compare/v0.1.0...v0.2.0
+[0.1.0]: https://github.com/releasetheepsteinfiles/epsteinexposed/releases/tag/v0.1.0

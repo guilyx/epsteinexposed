@@ -1,16 +1,18 @@
 # Epstein Files Toolchain — Design System
 
-**Direction:** Declassified · **Version:** 1.0.0
+**Direction:** Declassified · **Version:** 1.1.0
+**Canonical source:** [`releasetheepsteinfiles/branding`](https://github.com/releasetheepsteinfiles/branding)
 
-This document is byte-identical across all four repositories. It is the
+This document lives in `releasetheepsteinfiles/branding` and is copied
+byte-identically into every consumer repository by `sync.sh`. It is the
 shared contract that keeps them looking like one family of tools:
 
 | Repo | Surface | Role |
 |---|---|---|
-| [`epsteinexposed`](https://github.com/guilyx/epsteinexposed) | Python client + docs site | The library |
-| [`epsteinexposed-mcp`](https://github.com/guilyx/epsteinexposed-mcp) | MCP server + docs site | Structured search for agents |
-| [`epstein-files-rag-mcp`](https://github.com/guilyx/epstein-files-rag-mcp) | RAG MCP server + docs site | Semantic search for agents |
-| [`epsteinexplorer`](https://github.com/guilyx/epsteinexplorer) | Chat app + docs site | The product |
+| [`epsteinexposed`](https://github.com/releasetheepsteinfiles/epsteinexposed) | Python client + docs site | The library |
+| [`epsteinexposed-mcp`](https://github.com/releasetheepsteinfiles/epsteinexposed-mcp) | MCP server + docs site | Structured search for agents |
+| [`epstein-files-rag-mcp`](https://github.com/releasetheepsteinfiles/epstein-files-rag-mcp) | RAG MCP server + docs site | Semantic search for agents |
+| [`epsteinexplorer`](https://github.com/releasetheepsteinfiles/epsteinexplorer) | Chat app + docs site | The product |
 
 ---
 
@@ -214,9 +216,29 @@ the alignment.
 
 ## 8. Changing this system
 
-Change `brand/tokens.css` and `brand/DESIGN.md` here, then copy both
-files verbatim into the other three repositories in the same PR series.
-Bump the version at the top of both files. Drift between repos is the
-failure mode this system exists to prevent — the pre-alignment state had
-three different palettes across four surfaces, all nominally "the same
-theme".
+Edit `DESIGN.md` and `tokens.css` **in `releasetheepsteinfiles/branding`**,
+bump the version at the top of both files, add a `CHANGELOG.md` entry, then
+propagate:
+
+```bash
+./sync.sh ~/src            # writes brand/ into every consumer repo found there
+./sync.sh --check ~/src    # CI mode: exits non-zero if any repo has drifted
+```
+
+Never edit `brand/DESIGN.md` or `brand/tokens.css` inside a consumer repo — the
+next sync overwrites it, and the change is lost without warning.
+
+Drift between repos is the failure mode this system exists to prevent. The
+pre-alignment state had three different palettes across four surfaces, all
+nominally "the same theme"; v1.0.0 fixed the values but left propagation as a
+manual "copy both files verbatim into the other three repositories", which is
+the same failure mode wearing a process. `sync.sh` closes it.
+
+Two independent checks guard the boundary:
+
+| Check | Scope | Catches |
+| :--- | :--- | :--- |
+| `sync.sh --check` | across repos | a consumer repo whose `brand/` has drifted from canon |
+| `verify-tokens.mjs` | within a repo | a Tailwind `@theme` mirror that disagrees with `brand/tokens.css` |
+
+Run the first in this repo's CI, the second in each consumer's CI.

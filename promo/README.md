@@ -28,7 +28,7 @@ Chromium and encoded with ffmpeg, so output is deterministic. The renderer
 lives in the Explorer repo, which holds the master asset set:
 
 ```bash
-git clone https://github.com/guilyx/epsteinexplorer
+git clone https://github.com/releasetheepsteinfiles/epsteinexplorer
 cd epsteinexplorer/promo
 npm install
 npm run render          # all five clips, both crops
@@ -37,7 +37,7 @@ npm run render          # all five clips, both crops
 Copy `out/exposed-*` and `out/suite-*` back here afterwards.
 
 Visual language and palette: [`brand/DESIGN.md`](../brand/DESIGN.md).
-Channel-by-channel launch plan: [`LAUNCH.md`](https://github.com/guilyx/epsteinexplorer/blob/main/LAUNCH.md).
+Channel-by-channel launch plan: [`LAUNCH.md`](https://github.com/releasetheepsteinfiles/epsteinexplorer/blob/main/LAUNCH.md).
 
 ## A note on content
 

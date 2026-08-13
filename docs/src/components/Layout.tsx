@@ -76,7 +76,7 @@ export default function Layout() {
         <div className="border-t border-line px-5 py-3">
           <div className="flex items-center gap-4">
             <a
-              href="https://github.com/guilyx/epsteinexposed"
+              href="https://github.com/releasetheepsteinfiles/epsteinexposed"
               target="_blank"
               rel="noopener noreferrer"
               className="font-mono text-xs text-subtle transition-colors duration-150 hover:text-ember"

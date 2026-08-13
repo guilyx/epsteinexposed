@@ -5,7 +5,7 @@ Thanks for considering a contribution to **epsteinexposed**!
 ## Getting Started
 
 ```bash
-git clone https://github.com/guilyx/epsteinexposed.git
+git clone https://github.com/releasetheepsteinfiles/epsteinexposed.git
 cd epsteinexposed
 make install-dev   # editable install + pre-commit hooks
 ```

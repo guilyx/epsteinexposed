@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════════════════════════════
    EPSTEIN FILES TOOLCHAIN — CANONICAL DESIGN TOKENS
-   "Declassified" direction · v1.0.0
+   "Declassified" direction · v1.1.0
 
    This file is the single source of truth for the shared visual
    language across:
@@ -9,9 +9,10 @@
      · epstein-files-rag-mcp   (RAG MCP server + docs)
      · epsteinexplorer         (chat app + docs)
 
-   It is byte-identical in every repository. Do not edit a single
-   copy — change it here, then propagate to all four. See
-   brand/DESIGN.md for the rationale behind every value.
+   CANONICAL COPY: releasetheepsteinfiles/branding/tokens.css
+   Every consumer repo carries a byte-identical copy at brand/tokens.css,
+   written by sync.sh. Do NOT edit a consumer copy — it is overwritten on
+   the next sync. See DESIGN.md for the rationale behind every value.
 
    Tailwind v4 consumers import the @theme mirror (src/brand.css)
    which carries the same values and generates utility classes.

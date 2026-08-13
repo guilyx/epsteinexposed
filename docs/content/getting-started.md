@@ -14,7 +14,7 @@ pip install epsteinexposed
 Or from source:
 
 ```bash
-git clone https://github.com/guilyx/epsteinexposed.git
+git clone https://github.com/releasetheepsteinfiles/epsteinexposed.git
 cd epsteinexposed
 pip install -e ".[dev]"
 ```
@@ -112,6 +112,6 @@ A `429` response raises `EpsteinExposedRateLimitError`.
 
 ## Next Steps
 
-- Browse the [source on GitHub](https://github.com/guilyx/epsteinexposed) for the full client, model, and exception APIs
-- Read the [CHANGELOG](https://github.com/guilyx/epsteinexposed/blob/main/CHANGELOG.md) for version history
+- Browse the [source on GitHub](https://github.com/releasetheepsteinfiles/epsteinexposed) for the full client, model, and exception APIs
+- Read the [CHANGELOG](https://github.com/releasetheepsteinfiles/epsteinexposed/blob/main/CHANGELOG.md) for version history
 - See [Deployment](deployment.md) for publishing and docs hosting guides
